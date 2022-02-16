@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,78 +14,22 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::resource("posts",PostController::class); 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/get', function () {
-    return view('welcome');
-});
-
-Route::get('/posts',function(){
-$posts=[
-
-[
-"id"=>1,
-"name"=>"Hemmat",
-"body"=>"hi ya Hemmat",
-"title"=>"title el pos",
-]
-,
-
-[
- "id"=>2,
-"name"=>"NOur",
-"body"=>"hi ya NOur",
-"title"=>"title el pos",
-]
-,
-[
- "id"=>3,
-"name"=>"Haidy",
-"body"=>"hi ya Haidy",
-"title"=>"title el pos",
-]
+// Route::get('/posts',[PostController::class,"index"])->name("posts.index");
 
 
-];
-return view("posts.index",["posts"=>$posts]);
-});
+// Route::get('/posts/{id}/show', [PostController::class,"show"])->where('id', '[0-9]+')->name("posts.show");
 
 
-Route::get('/show/{id}', function ($id) {
-
-    $post=[
- 
-"id"=>$id,
-"name"=>"Dina",
-"body"=>"hi ya Dina",
-"title"=>"title el pos",
-    ];
-    return view('posts.show',$post);
-})->where('id', '[0-9]+');
+// Route::get('/posts/{id}/edit', [PostController::class,"edit"])->where('id', '[0-9]+')->name("posts.edit");
 
 
-Route::get('/edit/{id}', function ($id) {
+// Route::post('/posts/update',[PostController::class,"update"])->name("posts.update");
 
-    $post=[
- 
-"id"=>$id,
-"name"=>"Hemmat",
-"body"=>"hi ya Hemmat",
-"title"=>"title el pos",
-    ];
-    return view('posts.edit',$post);
-})->where('id', '[0-9]+');
+// Route::get('/posts/create',[PostController::class,"create"])->name("posts.create");
 
-
-Route::post('/update',function(){
- 
-return "Done";
-});
-
-Route::get('/create',function(){
-return view('posts.create');
-});
-
-Route::post('/store',function(){
- 
-return "stored";
-});
+// Route::post('/posts',[PostController::class,"store"])->name("posts.store");

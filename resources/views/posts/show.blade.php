@@ -11,14 +11,13 @@
         </style>
     </head>
     <body>
- 
+
 
 <ul>
 
     <li>{{ $id }}</li>
-    <li>{{ $name }}</li>
-    <li>{{ $body }}</li>
     <li>{{ $title }}</li>
+     <li>{{ $description }}</li>
 </ul>
 
     </body>
