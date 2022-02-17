@@ -14,6 +14,7 @@
     <tr>
 
         <th>id</th>
+        <th>Name</th>
         <th>title</th>
          <th>description</th>
     </tr>
@@ -22,7 +23,8 @@
  @foreach ($posts as $post)
   <tr>
 
-    <td>{{ $post['id'] }}</td>
+    <td>{{ $post->id }}</td>
+    <td>{{ $post->user->name }}</td>
     <td>{{ $post['title'] }}</td>
     <td>{{ $post['description'] }}</td>
     <td> <a href="/posts/{{ $post['id'] }}">show</a></td>

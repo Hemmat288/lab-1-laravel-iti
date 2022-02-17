@@ -1,9 +1,11 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
-use App\Http\Requests\StorePostRequest;
-use App\Models\Post;
-class PostController extends Controller
+use phpDocumentor\Reflection\DocBlock\Tags\Uses;
+use App\Models\User;
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,10 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts=Post::all();
-
-        return view("posts.index",["posts"=>$posts]);
-
+        //
     }
 
     /**
@@ -25,8 +24,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
-        return view("posts.create");
+       return view("users.create");
     }
 
     /**
@@ -35,19 +33,13 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePostRequest $request)
+    public function store(Request $request)
     {
-        //
-
-        $validated = $request->validated();
-
-
-
-        $post=new Post;
-        $post->title=$request->title;
-        $post->description=$request->description;
-        $post->user_id=1;
-        $post->save();
+       $user=new User();
+$user->name=$request->name;
+$user->email=$request->email;
+$user->password=$request->password;
+            $user->save();
      return redirect()->route("posts.index");
     }
 
@@ -59,9 +51,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-      $post= Post::find($id);
-
-      return view('posts.show',$post);
+        //
     }
 
     /**
@@ -72,9 +62,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-         $post= Post::find($id);
-
-      return view('posts.edit',$post);
+        //
     }
 
     /**
@@ -84,19 +72,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(request $request, $id)
+    public function update(Request $request, $id)
     {
-
-         $post= Post::find($id);
-
-            $post->title=$request->title;
-            $post->description=$request->description;
-            $title = $request->old('title');
-           $post->save();
-
-
-        return redirect()->route("posts.index");
-
+        //
     }
 
     /**
@@ -107,18 +85,6 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //  Post::find($id)->delete();
-        Post::destroy($id);
-
-return redirect()->route("posts.index");
+        //
     }
 }
-
-// php artisan tinker
-/// دي لما اكتبها ف ال terminal
-//هقدر اعمل
-// acess models
-
-// >>> use App\Models;
-// >>> Post::all();
-

@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers;
+
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +15,11 @@ use App\Http\Controllers\PostController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::resource("posts",PostController::class); 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::resource("posts",PostController::class);
+
+
+Route::get("users/create",[UserController::class,"create"]);
+Route::post("users",[UserController::class,"store"]);
 
 // Route::get('/posts',[PostController::class,"index"])->name("posts.index");
 
