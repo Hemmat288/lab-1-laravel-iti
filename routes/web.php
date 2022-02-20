@@ -28,7 +28,6 @@ Route::get('/dashboard', function () {
 Route::resource("posts",PostController::class)->middleware('auth');
 
 
-Route::get("users/create",[UserController::class,"create"])->middleware('auth');
-Route::post("users",[UserController::class,"store"])->middleware('auth');
+
 
 require __DIR__.'/auth.php';

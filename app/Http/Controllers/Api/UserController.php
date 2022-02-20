@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
-use phpDocumentor\Reflection\DocBlock\Tags\Uses;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use App\Models\User;
+use Illuminate\Http\Request;
+
 class UserController extends Controller
 {
     /**
@@ -14,7 +16,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+
+        $users= User::all();
+       return UserResource::collection($users);
+
     }
 
     /**
@@ -24,7 +29,7 @@ class UserController extends Controller
      */
     public function create()
     {
-       return view("users.create");
+        //
     }
 
     /**
@@ -35,12 +40,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-       $user=new User();
-      $user->name=$request->name;
-       $user->email=$request->email;
-      $user->password=$request->password;
-            $user->save();
-     return redirect()->route("posts.index");
+        //
     }
 
     /**
@@ -51,7 +51,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+         return new UserResource(User::find($id));
     }
 
     /**
