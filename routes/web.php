@@ -15,23 +15,20 @@ use App\Http\Controllers\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::resource("posts",PostController::class);
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return redirect('/posts');
+})->middleware(['auth'])->name('dashboard');
 
 
-Route::get("users/create",[UserController::class,"create"]);
-Route::post("users",[UserController::class,"store"]);
-
-// Route::get('/posts',[PostController::class,"index"])->name("posts.index");
+Route::resource("posts",PostController::class)->middleware('auth');
 
 
-// Route::get('/posts/{id}/show', [PostController::class,"show"])->where('id', '[0-9]+')->name("posts.show");
+Route::get("users/create",[UserController::class,"create"])->middleware('auth');
+Route::post("users",[UserController::class,"store"])->middleware('auth');
 
-
-// Route::get('/posts/{id}/edit', [PostController::class,"edit"])->where('id', '[0-9]+')->name("posts.edit");
-
-
-// Route::post('/posts/update',[PostController::class,"update"])->name("posts.update");
-
-// Route::get('/posts/create',[PostController::class,"create"])->name("posts.create");
-
-// Route::post('/posts',[PostController::class,"store"])->name("posts.store");
+require __DIR__.'/auth.php';

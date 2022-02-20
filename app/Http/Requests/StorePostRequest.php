@@ -33,7 +33,7 @@ class StorePostRequest extends FormRequest
     return [
         'title.required' => 'A title is required',
         'title.min' => 'title should be more than 3 char',
-        'description.required' => 'A message is required',
+        'description.required' => 'A description is required',
     ];
 }
 }

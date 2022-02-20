@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
+
 class PostController extends Controller
 {
     /**
@@ -46,7 +48,7 @@ class PostController extends Controller
         $post=new Post;
         $post->title=$request->title;
         $post->description=$request->description;
-        $post->user_id=1;
+        $post->user_id=Auth::id();
         $post->save();
      return redirect()->route("posts.index");
     }
@@ -92,6 +94,7 @@ class PostController extends Controller
             $post->title=$request->title;
             $post->description=$request->description;
             $title = $request->old('title');
+            $description = $request->old('description');
            $post->save();
 
 
